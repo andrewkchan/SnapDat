@@ -3,8 +3,10 @@ import { View, TouchableOpacity, Text, Image } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import IconI from "react-native-vector-icons/Ionicons";
 
+import { capture } from "../actions/index";
+
 const propTypes = {
-    capture: PropTypes.func.isRequired
+    dispatch: PropTypes.func.isRequired
 };
 
 const containerStyle = {
@@ -17,7 +19,7 @@ const snapsButtonWrapperStyle = {
     flex: 1,
     backgroundColor: "#fff",
     borderRadius: 5,
-    color: "#000",
+    //color: "#000",
     padding: 10,
     margin: 40
 };
@@ -47,8 +49,8 @@ class CameraBottomBar extends Component {
     }
 
     captureImage() {
-        const { capture } = this.props;
-        capture();
+        const { dispatch } = this.props;
+        dispatch(capture());
     }
     openSnaps() {
         const { navigator } = this.props;

@@ -2,11 +2,11 @@ import React, { Component, PropTypes } from "react";
 import { View, Navigator, Text, StatusBar } from "react-native";
 import Splash from "../components/Splash";
 import Dashboard from "../components/Dashboard";
-import Snaps from "../components/Snaps";
-import Discover from "../components/Discover";
-import AddMe from "../components/AddMe";
-import Chats from "../components/Chats";
-import Stories from "../components/Stories";
+// import Snaps from "../components/Snaps";
+// import Discover from "../components/Discover";
+//import AddMe from "../components/AddMe";
+// import Chats from "../components/Chats";
+// import Stories from "../components/Stories";
 
 const propTypes = {
     dispatch: PropTypes.func.isRequired
@@ -24,17 +24,33 @@ class Root extends Component {
         switch (routeId) {
             case "chat":
                 return (
+                    <Dashboard
+                        navigator={navigator}
+                        { ...this.props }
+                    />
+                );
+                /*
+                return (
                     <Chats
                         navigator={navigator}
                         { ...route.passProps }
                         { ...this.props }
                     />
                 );
+                */
 
             case "addMe":
                 return (
+                    <Dashboard
+                        navigator={navigator}
+                        { ...this.props }
+                    />
+                );
+                /*
+                return (
                     <AddMe navigator={navigator} />
                 );
+                */
 
             case "dashboard":
                 return (
@@ -51,13 +67,29 @@ class Root extends Component {
 
             case "stories":
                 return (
+                    <Dashboard
+                        navigator={navigator}
+                        { ...this.props }
+                    />
+                );
+                /*
+                return (
                     <Stories navigator={navigator} />
                 );
+                */
 
             case "snaps":
                 return (
+                    <Dashboard
+                        navigator={navigator}
+                        { ...this.props }
+                    />
+                );
+                /*
+                return (
                     <Snaps navigator={navigator} />
                 );
+                */
 
             case "splash":
                 return (
