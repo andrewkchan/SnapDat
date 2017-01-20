@@ -14,6 +14,8 @@ import IconI from "react-native-vector-icons/Ionicons";
 import CameraBottomBar from "../components/CameraBottomBar";
 import CameraTopBar from "../components/CameraTopBar";
 
+import {capture, receiveCapturedImage} from "../actions/index";
+
 const defaultButtonStyle = {
     margin: 15,
     alignSelf: "center",
@@ -27,6 +29,10 @@ const pressedButtonStyle = {
     height: 55
 };
 
+const propTypes = {
+    dispatch: PropTypes.func.isRequired
+};
+
 class CameraWrapper extends Component {
     constructor(props) {
         super(props);
@@ -36,11 +42,18 @@ class CameraWrapper extends Component {
             captureType: Camera.constants.Type.back,
             flashmode: Camera.constants.FlashMode.off
         };
+
+        this.handleButtonPress = this.handleButtonPress.bind(this);
     }
 
     handleButtonPress() {
+        const { dispatch } = this.props;
         this.camera.capture()
-            .then((data) => { console.log(data); })
+            .then((data) => {
+                dispatch(capture());
+                console.log("recv data from camera");
+                dispatch(receiveCapturedImage({uri: data.path}));
+            })
             .catch(err => { console.error(err); });
         this.setState({
             captureStyle: pressedButtonStyle
@@ -59,7 +72,7 @@ class CameraWrapper extends Component {
                 >
                     <View style={{ flex: 1, justifyContent: "space-between" }}>
                         <CameraTopBar {...this.props} />
-                        <CameraBottomBar {...this.props} />
+                        <CameraBottomBar { ...this.props } handleButtonPress={this.handleButtonPress} />
                     </View>
                 </Camera>
             </View>

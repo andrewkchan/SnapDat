@@ -49,8 +49,8 @@ class CameraBottomBar extends Component {
     }
 
     captureImage() {
-        const { dispatch } = this.props;
-        dispatch(capture());
+        const { handleButtonPress } = this.props;
+        handleButtonPress();
     }
     openSnaps() {
         const { navigator } = this.props;

@@ -2,7 +2,8 @@ import { combineReducers } from "redux";
 import * as types from "../constants/ActionTypes";
 
 const initialState = {
-    captured: false
+    captured: false,
+    image: null
 };
 
 const rootReducer = function(state = initialState, action) {
@@ -15,6 +16,9 @@ const rootReducer = function(state = initialState, action) {
 
         case types.CLOSE:
             return { ...state, captured: false };
+
+        case types.RECEIVE_CAPTURED_IMAGE:
+            return { ...state, image: action.image };
 
         default:
             return state;

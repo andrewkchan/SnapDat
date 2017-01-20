@@ -15,9 +15,11 @@ const imageStyle = {
 
 class Picture extends Component {
     render() {
+        let { image } = this.props;
+        image = image ? image : require("../images/capturedImg.png");
         return (
             <Image
-                source={require("../images/capturedImg.png")}
+                source={image}
                 style={imageStyle}
             >
                 <PictureTopBar {...this.props} />
